@@ -9,10 +9,10 @@ public class Funcionario {
     public Funcionario(String nome, String cargo, String telefone, int idade, Double salario) {
 
         this.nome = nome;
-        this.cargo = cargo;
-        this.telefone = telefone;
         this.idade = idade;
+        this.telefone = telefone;
         this.salario = salario;
+        this.cargo = cargo;
     }
     public Funcionario(){
         super();
