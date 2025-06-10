@@ -1,33 +1,35 @@
 
 package main;
 import java.util.Scanner;
-import connection.ConnectionDataBase;
 import dao.FuncionarioDao;
-import model.Funcionario;
+import dao.Funcionario;
+
 public class Main {
     public static void main(String[] args) {       
    Scanner scan  = new Scanner (System.in);
       FuncionarioDao funcionarioDao = new FuncionarioDao();
       Funcionario funcionario = new Funcionario();
        boolean continuar = true; 
-       int opcao = 0;   
+       int opc ;   
        // Menu do sistema de gerenciamento de loja
        System.out.println("Bem-vindo ao sistema de gerenciamento de loja!");
-       System.out.println("Selecione uma opção:");
+       System.out.println("Selecione uma opcao:");
        do{
-        System.out.println("1 - Cadastrar Funcionário");
-        System.out.println("2 - Listar Funcionários");
-        System.out.println("3 - Atualizar Funcionário");
-        System.out.println("4 - Excluir Funcionário");
+        System.out.println("1 - Cadastrar Funcionario");
+        System.out.println("2 - Listar Funcionarios");
+        System.out.println("3 - Atualizar Funcionario");
+        System.out.println("4 - Excluir Funcionario");
         System.out.println("5 - Sair");
-        opcao = scan.nextInt();
-        switch(opcao){
+        opc = Integer.parseInt(scan.nextLine());
+
+        switch(opc){
             case 1:
             // Inserindo Funcionario
                 System.out.println("Opção 1 selecionada: Cadastrar Funcionário");
                 System.out.println("Digite o nome do Funcioanario:");
                 String nome = scan.next();
                 funcionario.setNome(nome);
+
                 System.out.println("Digite o cargo do Funcionatio:");
                 String cargo = scan.next();
                 funcionario.setCargo(cargo);

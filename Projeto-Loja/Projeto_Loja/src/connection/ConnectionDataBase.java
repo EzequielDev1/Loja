@@ -1,4 +1,5 @@
 package connection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class ConnectionDataBase {
     private static final String USER = "root";
     private static final String PASSWORD = "ezequiel2007";
 
-    public Connection Conexao (){
+    public static Connection getConnection (){
         Connection con = null;
         try {
             Class.forName(DrIVER);
@@ -30,7 +31,7 @@ public class ConnectionDataBase {
 
 // Métodos para fechar a conexão com o banco de dados abaixo!
 
-    public void fecharConexao(Connection con) {
+    public static  void fecharConexao(Connection con) {
         if (con != null) {
             try {
                 con.close();
@@ -42,7 +43,7 @@ public class ConnectionDataBase {
         }
     }
 
-    public void fecharConexao(Connection con, PreparedStatement stmt) {
+    public static void fecharConexao(Connection con, PreparedStatement stmt) {
         fecharConexao(con);
         if (stmt != null) {
             try {
@@ -55,7 +56,7 @@ public class ConnectionDataBase {
         
     }
 
-    public void fecharConexao(Connection con, PreparedStatement stmt, ResultSet rs) {
+    public static void fecharConexao(Connection con, PreparedStatement stmt, ResultSet rs) {
         fecharConexao(con,stmt);
         if (rs != null) {
 

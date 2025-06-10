@@ -4,37 +4,41 @@ package dao;
  import java.sql.SQLException;
  import java.util.ArrayList;
  import connection.ConnectionDataBase;
- import model.Funcionario;
+
 public class FuncionarioDao {
 
-    public void cadastrarFuncionario(Funcionario funcionario) {
-        Connection conexao = ConnectionDataBase.Conexao();
+
+
+    public void cadastrarFuncionario(Funcionario funcionario) {  
+        Connection con = ConnectionDataBase.getConnection();
         PreparedStatement stmt = null;
-        try{
-            stmt = conexao.preparedStatement(Insert Into Funcionario (nome,idade,telefone,salario,cargo) values (?, ?, ?, ?, ?));
-            stmt.setstring(1, funcionario.getNome());
-            stmt.setString(2,funcionario.getcargo());
-            stmt.setString(3, fcuncionario.gettelefone());
-            stmt.setint(4, funcionario.getidade());
-            stmt.setDouble(5,funcioanrio.getSalario());
-            stmt.executeQuery();    
-            System.out.println("Funcionario cadastrado com sucesso!");
+          try{
+            stmt = con.prepareStatement("INSERT INTO funcionarios (nome, idade, telefone, salario, cargo) VALUES (?, ?, ?, ?, ?)");
 
-        }catch (SQLException e) {
+          stmt.setString(1, funcionario.getNome());
+            stmt.setInt(2, funcionario.getIdade());  // Corrigido para getIdade() com parênteses
+            stmt.setString(3, funcionario.getTelefone());
+            stmt.setDouble(4, funcionario.getSalario());
+            stmt.setString(5, funcionario.getCargo());
+            
+            stmt.executeUpdate();
+            
+            System.out.println("Funcionário cadastrado com sucesso!"); 
+        } catch (SQLException e) {
             System.err.println("Erro ao cadastrar funcionário: " + e.getMessage());
-        } finally {
-            conexao.fecharConexao(conexao, stmt);
+        }finally{
+            ConnectionDataBase.fecharConexao(con, stmt);
         }
-       }
+    }
 
-    public ArrayList<?> listarFuncionarios() {
+    public static ArrayList<?> listarFuncionarios() {
         
         return null;
     }
-    public void atualizarFuncionario(Funcionario funcionario) {
+    public static void atualizarFuncionario(Funcionario funcionario) {
         
     }
-    public void excluirFuncionario(int id) {
+    public static void excluirFuncionario(int id) {
         
     }
 
